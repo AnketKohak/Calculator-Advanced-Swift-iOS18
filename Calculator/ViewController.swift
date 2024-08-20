@@ -20,7 +20,13 @@ class ViewController: UIViewController {
         guard let number = Double(displayLabel.text!)else{
             fatalError("could not convert to Double")
         }
-        print(number)
+        if sender.currentTitle == "+/-"{
+            displayLabel.text = String(number * -1)
+        }else if sender.currentTitle == "AC" {
+            displayLabel.text = "0"
+        }else if sender.currentTitle == "%"{
+            displayLabel.text = String(number * 0.01)
+        }
     
     }
 
