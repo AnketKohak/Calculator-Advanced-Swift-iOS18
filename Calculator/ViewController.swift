@@ -16,7 +16,11 @@ class ViewController: UIViewController {
     
     @IBAction func calcButtonPressed(_ sender: UIButton) {
         
-        //What should happen when a non-number button is pressed
+        isFinishTypingNumber = true
+        guard let number = Double(displayLabel.text!)else{
+            fatalError("could not convert to Double")
+        }
+        print(number)
     
     }
 
