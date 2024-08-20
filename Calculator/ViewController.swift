@@ -27,12 +27,12 @@ class ViewController: UIViewController {
         }else if sender.currentTitle == "%"{
             displayLabel.text = String(number * 0.01)
         }
-    
+        
     }
-
+    
     
     @IBAction func numButtonPressed(_ sender: UIButton) {
-       
+        
         if let numValue = sender.currentTitle {
             
             if isFinishTypingNumber{
@@ -40,10 +40,20 @@ class ViewController: UIViewController {
                 isFinishTypingNumber = false
             }
             else{
+                if numValue == "."{
+                    guard let currentDisplayValue = Double(displayLabel.text!) else {
+                        fatalError("could not convert to Double")
+                    }
+                    let isInt = floor(currentDisplayValue) == currentDisplayValue
+                    if !isInt{
+                        return
+                    }
+                }
                 displayLabel.text = displayLabel.text!+numValue
+                
             }
         }
     }
-
+    
 }
 
