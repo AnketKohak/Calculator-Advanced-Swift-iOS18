@@ -8,12 +8,13 @@
 
 import UIKit
 
+//MARK: - viewcontroller
 class ViewController: UIViewController {
     
     @IBOutlet weak var displayLabel: UILabel!
     
     var isFinishTypingNumber: Bool = true
-    
+    //MARK: - displayvalye
     var displayValue: Double {
         get{
             guard let number = Double(displayLabel.text!) else{
@@ -24,26 +25,24 @@ class ViewController: UIViewController {
         set{
             displayLabel.text = String(newValue)
         }
-       
+        
     }
     private var calculator = calculatorLogic()
-    
+    //MARK: - calButtonPressed
     @IBAction func calcButtonPressed(_ sender: UIButton) {
         
         isFinishTypingNumber = true
         calculator.setNumber(displayValue)
         if let calMethod = sender.currentTitle
         {
-            guard let result = calculator.calculate(symbol: calMethod) else{
-                fatalError("could not calculate")
+            if let result = calculator.calculate(symbol: calMethod){
+                displayValue = result
             }
-            displayValue = result
-            
         }
         
     }
     
-    
+    //MARK: - numButtonPressed
     @IBAction func numButtonPressed(_ sender: UIButton) {
         
         if let numValue = sender.currentTitle {
